@@ -1,0 +1,25 @@
+version: "2"
+services:
+  galera1:
+    image: erkules/galera
+    hostname: galera1
+    container_name: galera1
+    ports:
+      - "3307:3306"
+    command: --wsrep-cluster-name=local-test --wsrep-cluster-address=gcomm://
+
+  galera2:
+    image: erkules/galera
+    hostname: galera2
+    container_name: galera2
+    ports:
+      - "3308:3306"
+    command: --wsrep-cluster-name=local-test --wsrep-cluster-address=gcomm://galera1
+
+  galera3:
+    image: erkules/galera
+    hostname: galera3
+    container_name: galera3
+    ports:
+      - "3309:3306"
+    command: --wsrep-cluster-name=local-test --wsrep-cluster-address=gcomm://galera1
